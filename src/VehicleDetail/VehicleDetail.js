@@ -28,7 +28,6 @@ class VehicleDetail extends Component{
     handleChange(event){
         console.log(event.target.name);
         const fieldName = event.target.name;
-        //this.setState({vehicleToEdit : {fieldName : event.target.value}});
         let tempObject = {...this.state.vehicleToEdit};
         tempObject[fieldName] = event.target.value;
         this.setState({vehicleToEdit : tempObject});
