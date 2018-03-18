@@ -45,6 +45,7 @@ class VehicleList extends Component{
         return(
           <div>
               <h1>Brand: {this.props.mybrand}</h1>
+              <button onClick={this.props.onChangeOfBrand}>Change Brand</button>
               <table className="table">
                   <thead>
                     <tr>
@@ -68,4 +69,12 @@ const mapGlobalStateToProps = (globalState) =>  {
     }
 }
 
-export default connect(mapGlobalStateToProps)(VehicleList);
+const mapGlobalDispatchToPropsFunctions = (dispatch) => {
+    return {
+        onChangeOfBrand: () => {
+            dispatch({type: 'BRAND_CHANGE', value: 'NEW Brand'})
+        }
+    }
+}
+
+export default connect(mapGlobalStateToProps, mapGlobalDispatchToPropsFunctions)(VehicleList);
