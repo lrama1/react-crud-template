@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import VehicleSummary from '../VehicleSummary';
 import axios from 'axios';
+import {connect} from 'react-redux';
 
 class VehicleList extends Component{
 
@@ -42,18 +43,29 @@ class VehicleList extends Component{
             );
         });
         return(
-          <table className="table">
-              <thead>
-                <tr>
-                    {listOfHeaders}
-                </tr>
-              </thead>
-              <tbody>
-              {listOfVehicles}
-              </tbody>
-          </table>
+          <div>
+              <h1>Brand: {this.props.mybrand}</h1>
+              <table className="table">
+                  <thead>
+                    <tr>
+                        {listOfHeaders}
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {listOfVehicles}
+                  </tbody>
+              </table>
+          </div>
         );
     }
 
 }
-export default VehicleList;
+
+//maps Global Store data to this component's props
+const mapGlobalStateToProps = (globalState) =>  {
+    return {
+        mybrand: globalState.brand
+    }
+}
+
+export default connect(mapGlobalStateToProps)(VehicleList);
